@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import FirebaseContext from "../../context/firebase";
 import UserContext from "../../context/user";
-import { getUserByUserId } from "../../services/firebase";
 
 export default function Actions({
   docId,
@@ -44,7 +43,7 @@ export default function Actions({
               }
             }}
             className={`w-8 mr-4 select-none cursor-pointer ${
-              toggleLiked ? "fill-current text-red" : "text-black"
+              toggleLiked ? "fill-current text-red-500" : "text-black"
             }`}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
