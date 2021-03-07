@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import FirebaseContext from "../context/firebase";
 import * as ROUTES from "../constants/routes";
-import { doesUserNameExist } from "../services/firebase";
+import { doesUsernameExist } from "../services/firebase";
 import logo from "../images/textLogo.png";
 
 export default function SignUp() {
@@ -23,7 +23,7 @@ export default function SignUp() {
   const handleSignup = async (event) => {
     event.preventDefault();
 
-    const usernameExists = await doesUserNameExist(username);
+    const usernameExists = await doesUsernameExist(username);
     if (!usernameExists.length) {
       try {
         const createdUserResult = await firebase

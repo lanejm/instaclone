@@ -1,6 +1,6 @@
 import { firebase, FieldValue } from "../lib/firebase";
 
-export async function doesUserNameExist(username) {
+export async function doesUsernameExist(username) {
   const result = await firebase
     .firestore()
     .collection("users")
@@ -39,14 +39,59 @@ export async function getUserFollowedPhotos(userId, followingUserIds) {
 
   const photosWithUserDetails = await Promise.all(
     userFollowedPhotos.map(async (photo) => {
-      let userLikedPhoto = false
+      let userLikedPhoto = false;
       if (photo.likes.includes(userId)) {
-        userLikedPhoto = true
+        userLikedPhoto = true;
       }
-      const user = await getUserByUserId(photo.userId)
-      const username = user[0].username
-      return {username, ...photo, userLikedPhoto}
+      const user = await getUserByUserId(photo.userId);
+      const username = user[0].username;
+      return { username, ...photo, userLikedPhoto };
     })
-  )
-  return photosWithUserDetails
+  );
+
+  return photosWithUserDetails;
+}
+
+export async function getSuggestedProfiles(userId) {
+  const result = await firebase.firestore().collection("users").limit(10).get();
+  const [{ following }] = await getUserByUserId(userId);
+
+  return result.docs
+    .map((user) => ({ ...user.data(), docId: user.id }))
+    .filter(
+      (profile) =>
+        profile.userId !== userId && !following.includes(profile.userId)
+    );
+}
+
+export async function updateUserFollowing(
+  docId,
+  profileId,
+  isFollowingProfile
+) {
+  return firebase
+    .firestore()
+    .collection("users")
+    .doc(docId)
+    .update({
+      following: isFollowingProfile
+        ? FieldValue.arrayRemove(profileId)
+        : FieldValue.arrayUnion(profileId),
+    });
+}
+
+export async function updateFollowedUserFollowers(
+  docId,
+  followingUserId,
+  isFollowingProfile
+) {
+  return firebase
+    .firestore()
+    .collection("users")
+    .doc(docId)
+    .update({
+      following: isFollowingProfile
+        ? FieldValue.arrayRemove(followingUserId)
+        : FieldValue.arrayUnion(followingUserId),
+    });
 }
