@@ -11,27 +11,27 @@ export function seedDatabase(firebase) {
       },
       {
         userId: '2',
-        username: 'raphael',
-        fullName: 'Raffaello Sanzio da Urbino',
-        emailAddress: 'raphael@sanzio.com',
+        username: 'Ron',
+        fullName: 'Ron Swanson',
+        emailAddress: 'ron@pawnee.gov',
         following: [],
         followers: ['ETYO9aTP3AWBEk8f5CemM9fSHel2'],
         dateCreated: Date.now()
       },
       {
         userId: '3',
-        username: 'dali',
-        fullName: 'Salvador Dalí',
-        emailAddress: 'salvador@dali.com',
+        username: 'Pepperwood',
+        fullName: 'Julius Pepperwood',
+        emailAddress: 'julius@pepperwood.com',
         following: [],
         followers: ['ETYO9aTP3AWBEk8f5CemM9fSHel2'],
         dateCreated: Date.now()
       },
       {
         userId: '4',
-        username: 'orwell',
-        fullName: 'George Orwell',
-        emailAddress: 'george@orwell.com',
+        username: 'Dave',
+        fullName: 'Dave Grohl',
+        emailAddress: 'dave@foofighters.com',
         following: [],
         followers: ['ETYO9aTP3AWBEk8f5CemM9fSHel2'],
         dateCreated: Date.now()
@@ -49,16 +49,16 @@ export function seedDatabase(firebase) {
         .add({
           photoId: i,
           userId: '2',
-          imageSrc: `/images/users/raphael/${i}.jpg`,
-          caption: 'Saint George and the Dragon',
+          imageSrc: `/src/images/users/ron/${i}.jpg`,
+          caption: 'Love this!',
           likes: [],
           comments: [
             {
-              displayName: 'dali',
-              comment: 'Love this place, looks like my animal farm!'
+              displayName: 'Pepperwood',
+              comment: 'Looks good!'
             },
             {
-              displayName: 'orwell',
+              displayName: 'Dave',
               comment: 'Would you mind if I used this picture?'
             }
           ],
