@@ -2,7 +2,7 @@ export function seedDatabase(firebase) {
     const users = [
       {
         userId: 'ETYO9aTP3AWBEk8f5CemM9fSHel2',
-        username: 'dwight',
+        username: 'Dwight',
         fullName: 'Dwight Schrute',
         emailAddress: 'dwight@dundermifflin.com',
         following: ['2'],
@@ -49,7 +49,7 @@ export function seedDatabase(firebase) {
         .add({
           photoId: i,
           userId: '2',
-          imageSrc: `/src/images/users/ron/${i}.jpg`,
+          imageSrc: `/images/users/ron/${i}.jpg`,
           caption: 'Love this!',
           likes: [],
           comments: [

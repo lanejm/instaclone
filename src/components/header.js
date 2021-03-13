@@ -6,7 +6,7 @@ import * as ROUTES from "../constants/routes";
 import logo from "../images/textLogo.png";
 import avatar from "../images/avatars/dwight.jpg"
 
-export default function Header() {
+export default function Header(username) {
   const { firebase } = useContext(FirebaseContext);
   const {user} = useContext(UserContext)
 
@@ -71,7 +71,7 @@ export default function Header() {
                   <Link to={`/p/${user.displayName}`}>
                     <img
                       className="rounded-full h-8 w-8 flex"
-                      src={avatar}
+                      src={`/images/avatars/${username}.jpg`}
                       alt={`${user.displayName} profile`}
                     />
                   </Link>
