@@ -1,4 +1,4 @@
-import { seedDatabase } from "../seed";
+// import { seedDatabase } from "../seed";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -12,6 +12,6 @@ const firebaseConfig = {
 const firebase = window.firebase.initializeApp(firebaseConfig);
 const { FieldValue } = window.firebase.firestore;
 
-seedDatabase(firebase);
+// seedDatabase(firebase);
 
 export { firebase, FieldValue };
