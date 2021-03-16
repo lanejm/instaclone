@@ -1,31 +1,31 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import FirebaseContext from "../context/firebase";
-import UserContext from '../context/user'
-import * as ROUTES from "../constants/routes";
-import logo from "../images/textLogo.png";
+import React, { useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import FirebaseContext from '../context/firebase';
+import UserContext from '../context/user';
+import * as ROUTES from '../constants/routes';
+import useUser from '../hooks/use-user';
 
-
-export default function Header(username) {
+export default function Header() {
+  const { user: loggedInUser } = useContext(UserContext);
+  const { user } = useUser(loggedInUser?.uid);
   const { firebase } = useContext(FirebaseContext);
-  const {user} = useContext(UserContext)
+  const history = useHistory();
 
-  console.log(user)
   return (
-    <header className="h-16 bg-white border-b mb-8">
-      <div className="container mx-auto max-width-lg h-full">
+    <header className="h-16 bg-white border-b border-gray-primary mb-8">
+      <div className="container mx-auto max-w-screen-lg h-full">
         <div className="flex justify-between h-full">
           <div className="text-gray-700 text-center flex items-center align-items cursor-pointer">
-            <h1>
-              <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
-                <img src={logo} alt="Instagram" className="mt-2 w-1/12" />
+            <h1 className="flex justify-center w-full">
+              <Link to={ROUTES.DASHBOARD} aria-label="Instagram logo">
+                <img src="/images/textLogo.png" alt="Instagram" className="mt-2 w-6/12" />
               </Link>
             </h1>
           </div>
-          <div className="text-gray text-center flex items-center align-items">
+          <div className="text-gray-700 text-center flex items-center align-items">
             {user ? (
               <>
-                <Link to={ROUTES.DASHBOARD} aria-label="Home">
+                <Link to={ROUTES.DASHBOARD} aria-label="Dashboard">
                   <svg
                     className="w-8 mr-6 text-black-light cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
@@ -45,10 +45,14 @@ export default function Header(username) {
                 <button
                   type="button"
                   title="Sign Out"
-                  onClick={() => firebase.auth().signOut()}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
+                  onClick={() => {
+                    firebase.auth().signOut();
+                    history.push(ROUTES.LOGIN);
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
                       firebase.auth().signOut();
+                      history.push(ROUTES.LOGIN);
                     }
                   }}
                 >
@@ -68,11 +72,11 @@ export default function Header(username) {
                   </svg>
                 </button>
                 <div className="flex items-center cursor-pointer">
-                  <Link to={`/p/${user.displayName}`}>
+                  <Link to={`/p/${user?.username}`}>
                     <img
                       className="rounded-full h-8 w-8 flex"
-                      src={`../images/avatars/${username}.jpg`}
-                      alt={`${user.displayName} profile`}
+                      src={`/images/avatars/${user.username}.jpg`}
+                      alt={`${user?.username} profile`}
                     />
                   </Link>
                 </div>
@@ -82,7 +86,7 @@ export default function Header(username) {
                 <Link to={ROUTES.LOGIN}>
                   <button
                     type="button"
-                    className="bg-blue-500 font-bold text-sm rounded text-white w-20 h-8"
+                    className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
                   >
                     Log In
                   </button>
@@ -90,7 +94,7 @@ export default function Header(username) {
                 <Link to={ROUTES.SIGN_UP}>
                   <button
                     type="button"
-                    className="font-bold text-sm rounded text-blue w-20 h-8"
+                    className="font-bold text-sm rounded text-blue-medium w-20 h-8"
                   >
                     Sign Up
                   </button>

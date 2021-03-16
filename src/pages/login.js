@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import FirebaseContext from "../context/firebase";
 import * as ROUTES from "../constants/routes";
-import logo from "../images/textLogo.png";
-import instaProfile from "../images/instaProfile.png"
+
+
 
 export default function Login() {
   const history = useHistory();
@@ -32,12 +32,12 @@ export default function Login() {
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
       <div className="flex w-3/5">
-        <img src={instaProfile} alt="Iphone with Instagram app" />
+        <img src="/images/instaProfile.png" alt="Iphone with Instagram app" />
       </div>
       <div className="flex flex-col w-2/5">
         <div className="flex flex-col item-center bg-white p-4 border mb-4">
           <h1 className="flex justify-center w-full">
-            <img src={logo} alt="Instagram" className="mt-2 w-6/12 mb-4" />
+            <img src="/images/textLogo.png" alt="Instagram" className="mt-2 w-6/12 mb-4" />
           </h1>
           {error && <p className="mb-4 text-xs text-red-500">{error}</p>}
 
