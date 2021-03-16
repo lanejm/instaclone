@@ -18,7 +18,7 @@ export default function Header() {
           <div className="text-gray-700 text-center flex items-center align-items cursor-pointer">
             <h1 className="flex justify-center w-full">
               <Link to={ROUTES.DASHBOARD} aria-label="Instagram logo">
-                <img src="/images/textLogo.png" alt="Instagram" className="mt-2 w-6/12" />
+                <img src="/assets/textLogo.png" alt="Instagram" className="mt-2 w-6/12" />
               </Link>
             </h1>
           </div>
@@ -75,7 +75,7 @@ export default function Header() {
                   <Link to={`/p/${user?.username}`}>
                     <img
                       className="rounded-full h-8 w-8 flex"
-                      src={`/images/avatars/${user.username}.jpg`}
+                      src={`/assets/avatars/${user.username}.jpg`}
                       alt={`${user?.username} profile`}
                     />
                   </Link>
