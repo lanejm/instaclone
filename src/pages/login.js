@@ -31,10 +31,10 @@ export default function Login() {
   }, []);
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen">
-      <div className="flex w-3/5">
+      <div className="flex w-3/5 invisible sm:visible">
         <img src="/assets/instaProfile.png" alt="Iphone with Instagram app" />
       </div>
-      <div className="flex flex-col w-2/5">
+      <div className="mr-20 ml=-5 flex-shrink-1 sm:content-center">
         <div className="flex flex-col item-center bg-white p-4 border mb-4">
           <h1 className="flex justify-center w-full">
             <img src="/assets/textLogo.png" alt="Instagram" className="mt-2 w-6/12 mb-4" />
@@ -69,10 +69,10 @@ export default function Login() {
             </button>
           </form>
         </div>
-        <div className="flex justify-center items-center flex-col w-full bg-white p-4 border">
+        <div className="flex justify-center text-center flex-col w-full bg-white p-4 border">
           <p className="text-sm">
             Don't have an account?{" "}
-            <Link to={ROUTES.SIGN_UP} className="font-bold">
+            <Link to={ROUTES.SIGN_UP} className="font-bold text-blue-500">
               Sign up
             </Link>
           </p>
